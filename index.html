@@ -8,15 +8,11 @@
     <div id="app">
       <div class="l-menubar">
         <ul>
-          <li class="l-menuitem"><a href="<?= getAppUrl() ?>?p=index">TOP</a></li>
-          <li class="l-menuitem"><a href="<?= getAppUrl() ?>?p=info">INFO</a></li>
+          <li class="l-menuitem"><router-link to="/">TOP</router-link></li>
+          <li class="l-menuitem"><router-link to="/about">ABOUT</router-link></li>
         </ul>
       </div>
-      <div class="l-body">
-        <h1 class="e-title">URLを入力し、分析ボタンを押してください</h1>
-        <input type="url" placeholder="URL" class="e-input_URL">
-        <button type="submit" class="e-button_submit" @click="helloMessage">分析</button>
-      </div>
+      <router-view></router-view>
     </div>
     <?!= HtmlService.createHtmlOutputFromFile('js').getContent(); ?>
     <div>

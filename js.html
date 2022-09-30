@@ -1,12 +1,53 @@
-<script src="https://unpkg.com/vue@next"></script>
-<script>
-  var app = Vue.createApp({
-    el: '#app',
-    methods: {
-      helloMessage: function() {
-        console.log("Hello, World!");
-      }
-    }
+<!-- CDNよりVueを取得 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1"></script>
+
+<script>  
+  const router = new VueRouter({
+    routes: [
+      { 
+        path: '/', 
+        name: 'top',
+        component: {
+          template: `
+            <div class="l-body">
+              <h1 class="e-title">URLを入力し、分析ボタンを押してください</h1>
+              <input type="url" placeholder="URL" class="e-input_URL">
+              <button type="submit" class="e-button_submit" @click="runAnalytics">分析</button>
+            </div>
+          `,
+          methods: {
+            runAnalytics: function() {
+              this.$router.push({ name:'about'})
+            }
+          },
+        }
+      },
+      { 
+        path: '/about', 
+        name: 'about',
+        component: {
+          template: `
+            <div class="l-body">
+              <h1 class="e-title">ABOUT ME</h1>
+              <p class="e-text">制作者 : 林 大地</p>
+              <br>
+              <p class="e-text">Git : <a href="https://github.com/hayashidaichinextgen/SlideAnalytics">https://github.com/hayashidaichinextgen/SlideAnalytics</a></p>
+            </div>
+          `,
+          methods: {
+            runAnalytics: function() {
+              console.log("Hello, World");
+            }
+          },
+        }
+      } 
+    ]
   });
-  app.mount('#app');
+  
+  var app = new Vue({    
+    el: '#app',
+    router : router,
+  });
+
 </script>
