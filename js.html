@@ -11,16 +11,32 @@
         component: {
           template: `
             <div class="l-body">
-              <h1 class="e-title">URLを入力し、分析ボタンを押してください</h1>
-              <input type="url" placeholder="URL" class="e-input_URL">
-              <button type="submit" class="e-button_submit" @click="runAnalytics">分析</button>
+              <h1 class="e-title">{{ message }}</h1>
+              <input type="url" placeholder="URL" class="e-input_URL" v-model="target_url" value="https://script.google.com/a/macros/nextgen.co.jp/s/AKfycbyqBIZskZK8VzHZJo9TVx9FMu6oUqV5al_4uB7mWIZB/dev">
+              <button type="submit" class="e-button_submit" @click="fetchSlideData">分析</button>
             </div>
           `,
-          methods: {
-            runAnalytics: function() {
-              this.$router.push({ name:'about'})
+          data() {
+            return {
+              message: "URLを入力し、分析ボタンを押してください" ,
+              target_url:null,
+              status: true
             }
           },
+          methods: {
+            fetchSlideData() {
+              this.message = "分析中";
+
+              if (!this.target_url) {
+                this.message = "無効なURLが入力されています。"
+                return;
+              }
+
+              google.script.run.withSuccessHandler(function(result_data){
+                router.push({ name: "result",params:{data: result_data}})
+              }).getData();
+            }
+          }
         }
       },
       { 
@@ -32,14 +48,44 @@
               <h1 class="e-title">ABOUT ME</h1>
               <p class="e-text">制作者 : 林 大地</p>
               <br>
-              <p class="e-text">Git : <a href="https://github.com/hayashidaichinextgen/SlideAnalytics">https://github.com/hayashidaichinextgen/SlideAnalytics</a></p>
+              <p class="e-text">Git : <a href="https://github.com/hayashidaichinextgen/SlideAnalytics">hayashidaichinextgen/SlideAnalytics</a></p>
+            </div>
+          `
+        }
+      },
+      { 
+        path: '/result', 
+        name: 'result',
+        component: {
+          template: `
+            <div class="l-body">
+              <div v-if="!status">
+                <h1 class="e-title">FAILED</h1>
+                <p class="e-text">分析に失敗しました。URL等を確認してください。</p>
+              </div>
+              <div v-else>
+                <h1 class="e-title">RESULT</h1>
+                <p class="e-text">{{ data }}</p>
+                <button type="submit" class="e-button_submit" @click="fetchDetail">詳細</button>
+              </div>
             </div>
           `,
-          methods: {
-            runAnalytics: function() {
-              console.log("Hello, World");
+          data() {
+            return {
+              status: false,
+              data: null
             }
           },
+          methods: {
+            fetchDetail() {
+              console.log("詳細")
+            }
+          },
+          created() {
+            this.data = this.$route.params.data
+            console.log(this.data)
+            this.status = this.data?true:false;
+          }
         }
       } 
     ]

@@ -8,3 +8,7 @@ function doGet(e) {
 function getAppUrl() {
   return ScriptApp.getService().getUrl();
 }
+
+function getData() {
+  return "data"
+}
