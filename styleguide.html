@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+  </head>
+  <body>
+    <h1>スタイルガイド</h1>
+
+    <h2>メニューバー</h2>
+    <div class="l-menubar">
+      <ul>
+        <li class="l-menuitem"><a href="#">メニューアイテム</a></li>
+        <li class="l-menuitem"><a href="#">メニューアイテム</a></li>
+      </ul>
+    </div>
+
+    <hr>
+    <h2>ボディ</h2>
+    <div class="l-body"></div>
+
+    <hr>
+    <h2>タイトル</h2>
+    <h1 class="e-title">タイトル</h1>
+
+    <hr>
+    <h2>テキスト</h2>
+    <p class="e-text">テキスト</p>
+
+    <hr>
+    <h2>URL入力欄</h2>
+    <input type="url" placeholder="URL" class="e-input_URL">
+
+    <hr>
+    <h2>Submitボタン</h2>
+    <button type="submit" class="e-button_submit">ボタン</button>
+
+
+    <div>
+     <a href="<?= getAppUrl() ?>?p=index">TOPに戻る</a>
+    </div>
+
+  </body>
+</html>
