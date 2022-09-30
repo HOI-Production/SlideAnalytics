@@ -2,8 +2,18 @@
 <html>
   <head>
     <base target="_top">
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
   </head>
   <body>
-    
+    <div id="app">
+      <div class="l-menubar">
+        <ul>
+          <li class="l-menuitem"><router-link to="/">TOP</router-link></li>
+          <li class="l-menuitem"><router-link to="/about">ABOUT</router-link></li>
+        </ul>
+      </div>
+      <router-view></router-view>
+    </div>
+    <?!= HtmlService.createHtmlOutputFromFile('js').getContent(); ?>
   </body>
 </html>
