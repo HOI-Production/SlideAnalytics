@@ -15,7 +15,7 @@ function CONVERT_SLIDE_FROM_PPT(id) {
     { convert: true }
   );
 
-  let folder_id = PropertiesService.getScriptProperties().getProperty("SLIDE_FOLDER_ID");
+  let folder_id = STORE_FOLDER;
 
   FILE_MOVE_TO(new_file_data.id,folder_id);
   return new_file_data.id;

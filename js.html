@@ -33,7 +33,6 @@
               }
 
               google.script.run.withSuccessHandler(function(result_data){
-                console.log(result_data)
                 router.push({ name: "result",params:{data: result_data}})
               }).getData(this.target_url);
             }
@@ -48,9 +47,15 @@
             <div class="l-body">
               <h1 class="e-title">ABOUT ME</h1>
               <p class="e-text">制作者 : 林 大地</p>
-              <p class="e-text">Git: <a href="https://github.com/hayashidaichinextgen/SlideAnalytics">hayashidaichinextgen/SlideAnalytics</a></p>
+              <p class="e-text">Git: <a v-bind:href=url>{{ branch }}</a></p>
             </div>
-          `
+          `,
+          data() {
+            return {
+              branch: "hayashidaichinextgen/SlideAnalytics",
+              url: 'https://github.com/hayashidaichinextgen/SlideAnalytics'
+            }
+          }
         }
       },
       { 
@@ -65,9 +70,20 @@
               </div>
               <div v-else>
                 <h1 class="e-title">RESULT</h1>
-                <p class="e-text">ファイル名 : {{ data.title }}</p>
-                <p class="e-text">有効スライド数: {{ data.active_pages }}</p>
-                <p class="e-text">有効文字数: {{ data.active_chars }}</p>
+                <table class="l-datatable">
+                  <tr>
+                    <td class="l-datarecord_title">ファイル名:</td>
+                    <td class="l-datarecord_data" >{{ data.title }}</td>
+                  </tr>
+                  <tr>
+                    <td class="l-datarecord_title">有効スライド数:</td>
+                    <td class="l-datarecord_data" >{{ data.active_pages }} スライド</td>
+                  </tr>
+                  <tr>
+                    <td class="l-datarecord_title">有効文字数:</td>
+                    <td class="l-datarecord_data" >{{ data.active_chars }} 文字</td>
+                  </tr>
+                </table>
                 <button type="submit" class="e-button_submit" @click="fetchDetail">詳細</button>
               </div>
             </div>
@@ -85,9 +101,8 @@
           },
           created() {
             this.data = this.$route.params.data;
-
+            console.log(this.data)
             this.status = this.data.status;
-            console.log(this.status)
           }
         }
       } 

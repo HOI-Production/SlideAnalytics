@@ -1,7 +1,7 @@
 function doGet(e) {
-
   let page = e.parameter.p??"index";
-  const HtmlOutPut = HtmlService.createTemplateFromFile(page).evaluate().setTitle("Googleスライド分析");
+  const HtmlOutPut = HtmlService.createTemplateFromFile(page).evaluate();
+  HtmlOutPut.setTitle(p_TITLE);
   return HtmlOutPut;
 }
 
@@ -10,39 +10,42 @@ function getAppUrl() {
 }
 
 function getData(url) {
+  let result;
 
-  let id = GET_FILEID_FROM_URL(url);
+  try {
+    let id = GET_FILEID_FROM_URL(url);
+    let fileType = GET_FILE_TYPE(id);
 
-  console.log(id);
+    if (fileType == MIME_PPT) {
+      id = CONVERT_SLIDE_FROM_PPT(id);
+      fileType = MIME_SLIDE;
+    } 
 
-  let fileType = GET_FILE_TYPE(id);
-
-  console.log(fileType);
-
-  if (fileType == MIME_PPT) {
-    id = CONVERT_SLIDE_FROM_PPT(id);
-    fileType = MIME_SLIDE;
+    if (fileType != MIME_SLIDE) {
+      result = {
+        status: false,
+        message: FILETYPE_NOT_MATCH
+      }
+    } else {
+      result = GET_SLIDE_DATA(id);
+      SET_RESULT_DATA(result);
+    }
   } 
-
-  let result
-
-  if (fileType != MIME_SLIDE) {
+  catch(e) {
     result = {
       status: false,
-      message: "このファイル形式は対応していません。"
+      message: NOT_URL,
+      details: e
     }
-  } else {
-    result = GET_SLIDE_DATA(id);
   }
-
+  console.log(result);
   return result;
 }
 
-function testM(){
-  let url = "https://docs.google.com/presentation/d/15-NXkW6_Ujc4wFD6gT5HqdsmUxU5AkXU/edit#slide=id.p1";
+function test() {
+  let url = "https://docs.google.com/presentation/d/1GoGy99hh8eGO3JYqsI2wgdf19tsQ3wEVwTlBLkUYo1w/edit#slide=id.p"
 
   let data = getData(url);
-
 
   console.log(data)
 }
