@@ -12,7 +12,7 @@
           template: `
             <div class="l-body">
               <h1 class="e-title">{{ message }}</h1>
-              <input type="url" placeholder="URL" class="e-input_URL" v-model="target_url" value="https://script.google.com/a/macros/nextgen.co.jp/s/AKfycbyqBIZskZK8VzHZJo9TVx9FMu6oUqV5al_4uB7mWIZB/dev">
+              <input type="url" placeholder="URL" class="e-input_URL" v-model="target_url">
               <button type="submit" class="e-button_submit" @click="fetchSlideData">分析</button>
             </div>
           `,
@@ -33,8 +33,9 @@
               }
 
               google.script.run.withSuccessHandler(function(result_data){
+                console.log(result_data)
                 router.push({ name: "result",params:{data: result_data}})
-              }).getData();
+              }).getData(this.target_url);
             }
           }
         }
@@ -47,8 +48,7 @@
             <div class="l-body">
               <h1 class="e-title">ABOUT ME</h1>
               <p class="e-text">制作者 : 林 大地</p>
-              <br>
-              <p class="e-text">Git : <a href="https://github.com/hayashidaichinextgen/SlideAnalytics">hayashidaichinextgen/SlideAnalytics</a></p>
+              <p class="e-text">Git: <a href="https://github.com/hayashidaichinextgen/SlideAnalytics">hayashidaichinextgen/SlideAnalytics</a></p>
             </div>
           `
         }
@@ -60,12 +60,14 @@
           template: `
             <div class="l-body">
               <div v-if="!status">
-                <h1 class="e-title">FAILED</h1>
-                <p class="e-text">分析に失敗しました。URL等を確認してください。</p>
+                <h1 class="e-title_failed">FAILED</h1>
+                <p class="e-text">{{ data.message }}</p>
               </div>
               <div v-else>
                 <h1 class="e-title">RESULT</h1>
-                <p class="e-text">{{ data }}</p>
+                <p class="e-text">ファイル名 : {{ data.title }}</p>
+                <p class="e-text">有効スライド数: {{ data.active_pages }}</p>
+                <p class="e-text">有効文字数: {{ data.active_chars }}</p>
                 <button type="submit" class="e-button_submit" @click="fetchDetail">詳細</button>
               </div>
             </div>
@@ -82,9 +84,10 @@
             }
           },
           created() {
-            this.data = this.$route.params.data
-            console.log(this.data)
-            this.status = this.data?true:false;
+            this.data = this.$route.params.data;
+
+            this.status = this.data.status;
+            console.log(this.status)
           }
         }
       } 
