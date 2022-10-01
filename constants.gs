@@ -5,6 +5,7 @@ const SPREAD_SHEET = PropertiesService.getScriptProperties().getProperty("SPREAD
 // DB
 const SLIDE_OVERVIEW = "SLIDE_OVERVIEW"
 const SLIDE_DETAILS = "SLIDE_DETAIL"
+const STATISTICS = "STATISTICS"
 
 // EXCELL FUNC
 const AUTOINCREMENT = "=ROW()-1"
