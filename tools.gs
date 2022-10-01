@@ -2,7 +2,7 @@
 function getDataFromFolder() {
 
   // 対象フォルダーを設定
-  let url = "https://drive.google.com/drive/folders/1BZCoGSapVghT0t8YvxtR2SLvrwMuzBib";
+  let url = "https://drive.google.com/drive/folders/1tBZHn9sL-rqb2fD8VPlZyE5b_ZggRQjw";
 
   let id = GET_FILEID_FROM_URL(url);
 
