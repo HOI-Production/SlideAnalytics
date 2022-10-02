@@ -7,38 +7,114 @@
   <body>
     <h1>スタイルガイド</h1>
 
-    <h2>メニューバー</h2>
+    <h2>:メニューバー:</h2>
     <div class="l-menubar">
       <ul>
-        <li class="l-menuitem"><a href="#">メニューアイテム</a></li>
-        <li class="l-menuitem"><a href="#">メニューアイテム</a></li>
+        <li class="l-menuitem">メニューアイテム</li>
+        <li class="l-menuitem">メニューアイテム</li>
       </ul>
     </div>
 
     <hr>
-    <h2>ボディ</h2>
-    <div class="l-body"></div>
+    <div class="l-body">
 
-    <hr>
-    <h2>タイトル</h2>
-    <h1 class="e-title">タイトル</h1>
+      <h2>:ボディ:</h2>
 
-    <hr>
-    <h2>テキスト</h2>
-    <p class="e-text">テキスト</p>
+      <hr>
+      <h2>:タイトル:</h2>
+      <h1 class="e-title">タイトル</h1>
 
-    <hr>
-    <h2>URL入力欄</h2>
-    <input type="url" placeholder="URL" class="e-input_URL">
+      <hr>
+      <h2>:タイトル:</h2>
+      <h1 class="e-title_failed">エラー時タイトル</h1>
 
-    <hr>
-    <h2>Submitボタン</h2>
-    <button type="submit" class="e-button_submit">ボタン</button>
+      <hr>
+      <h2>:テキスト:</h2>
+      <p class="e-text">テキスト</p>
 
+      <hr>
+      <h2>:URL入力欄:</h2>
+      <input type="url" placeholder="URL" class="e-input_URL">
 
-    <div>
-     <a href="<?= getAppUrl() ?>?p=index">TOPに戻る</a>
+      <hr>
+      <h2>:Submitボタン:</h2>
+      <button type="submit" class="e-button_submit">ボタン</button>
+
+      <hr>
+      <h2>:2カラムレイアウト:</h2>
+      <table class="c-datatable">
+        <tr>
+          <td class="c-datarecord_title">ラベルラベル</td>
+          <td class="c-datarecord_data">テキストテキスト</td>
+        </tr>
+        <tr>
+          <td class="c-datarecord_title">ラベルラベルラベルラベル</td>
+          <td class="c-datarecord_data">テキストテキストテキストテキスト</td>
+        </tr>
+        <tr>
+          <td class="c-datarecord_title">ラベルラベルラベルラベルラベルラベル</td>
+          <td class="c-datarecord_data">テキストテキストテキストテキストテキストテキスト</td>
+        </tr>
+      </table>
+
+      <hr>
+      <h2>:2カラムレイアウト + 画像:</h2>
+      <div class="c-datatable-detail">
+        <img src="https://drive.google.com/uc?id=1xSWVh5SRRRLyT3xuFTMBg5-vFebRAiMi" class="c-datarecord-detail_Image">
+        <table>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキスト</td>
+          </tr>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベルラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキストテキストテキスト</td>
+          </tr>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベルラベルラベルラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキストテキストテキストテキストテキスト</td>
+          </tr>
+        </table>
+      </div>
+      <div class="c-datatable-detail">
+        <img src="https://drive.google.com/uc?id=1xSWVh5SRRRLyT3xuFTMBg5-vFebRAiMi" class="c-datarecord-detail_Image">
+        <table>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキスト</td>
+          </tr>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベルラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキストテキストテキスト</td>
+          </tr>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベルラベルラベルラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキストテキストテキストテキストテキスト</td>
+          </tr>
+        </table>
+      </div>
+      <div class="c-datatable-detail">
+        <img src="https://drive.google.com/uc?id=1xSWVh5SRRRLyT3xuFTMBg5-vFebRAiMi" class="c-datarecord-detail_Image">
+        <table>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキスト</td>
+          </tr>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベルラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキストテキストテキスト</td>
+          </tr>
+          <tr>
+            <td class="c-datarecord-detail_title">ラベルラベルラベルラベルラベルラベル</td>
+            <td class="c-datarecord-detail_data">テキストテキストテキストテキストテキストテキスト</td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <a href="<?= getAppUrl() ?>?p=index">TOPに戻る</a>
+      </div>
+
     </div>
-
   </body>
 </html>

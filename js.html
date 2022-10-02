@@ -45,16 +45,27 @@
         component: {
           template: `
             <div class="l-body">
-              <h1 class="e-title">ABOUT ME</h1>
-              <p class="e-text">制作者 : 林 大地</p>
-              <p class="e-text">Git: <a :href=url>{{ branch }}</a></p>
-              <img src="https://drive.google.com/uc?id=1E4mThphIzASKq-8Qifi0UazcD0JwHEpI" width=" 500" height="500" alt="いつも隣にITのお仕事ロゴ">
+              <h1 class="e-title">ABOUT</h1>
+              <table class="c-datatable">
+                <tr>
+                  <td class="c-datarecord_title">製作者:</td>
+                  <td class="c-datarecord_data" >林 大地</td>
+                </tr>
+                <tr>
+                  <td class="c-datarecord_title">Git:</td>
+                  <td class="c-datarecord_data" ><a :href=url>{{ branch }}</a></td>
+                </tr>
+                <tr>
+                  <td class="c-datarecord_title">スタイルガイド:</td>
+                  <td class="c-datarecord_data" >URL + ?p=styleguide</td>
+                </tr>
+              </table>
             </div>
           `,
           data() {
             return {
               branch: "hayashidaichinextgen/SlideAnalytics",
-              url: "https://github.com/hayashidaichinextgen/SlideAnalytics"
+              url: "https://github.com/hayashidaichinextgen/SlideAnalytics",
             }
           }
         }
@@ -71,38 +82,38 @@
               </div>
               <div v-else>
                 <h1 class="e-title">RESULT</h1>
-                <table class="l-datatable">
+                <table class="c-datatable">
                   <tr>
-                    <td class="l-datarecord_title">ファイル名:</td>
-                    <td class="l-datarecord_data" >{{ data.presentation_title }}</td>
+                    <td class="c-datarecord_title">ファイル名:</td>
+                    <td class="c-datarecord_data" >{{ data.presentation_title }}</td>
                   </tr>
                   <tr>
-                    <td class="l-datarecord_title">有効スライド数:</td>
-                    <td class="l-datarecord_data" >{{ data.active_pages }} スライド</td>
+                    <td class="c-datarecord_title">有効スライド数:</td>
+                    <td class="c-datarecord_data" >{{ data.active_pages }} スライド</td>
                   </tr>
                   <tr>
-                    <td class="l-datarecord_title">有効文字数:</td>
-                    <td class="l-datarecord_data" >{{ data.active_chars }} 文字</td>
+                    <td class="c-datarecord_title">有効文字数:</td>
+                    <td class="c-datarecord_data" >{{ data.active_chars }} 文字</td>
                   </tr>
                 </table>
-                <button type="submit" class="e-button_submit" @click="isDetail=true" v-if="!isDetail">詳細</button>
-                <div v-for="slide in data.slides" v-if="isDetail">
-                  <img :src=slide.slide_img_url>
+                <div v-for="slide in data.slides" v-if="isDetail" class="c-datatable-detail">
+                  <img :src=slide.slide_img_url class="c-datarecord-detail_Image">
                   <table>
                     <tr>
-                      <td class="l-datarecord_title">ページ</td>
-                      <td class="l-datarecord_data" >{{ slide.page }} スライド</td>
+                      <td class="c-datarecord-detail_title">ページ:</td>
+                      <td class="c-datarecord-detail_data" >{{ slide.page }}</td>
                     </tr>
                     <tr>
-                      <td class="l-datarecord_title">状態:</td>
-                      <td class="l-datarecord_data" >{{ slide.type }} スライド</td>
+                      <td class="c-datarecord-detail_title">状態:</td>
+                      <td class="c-datarecord-detail_data" >{{ slide.type }}</td>
                     </tr>
                     <tr>
-                      <td class="l-datarecord_title">文字数:</td>
-                      <td class="l-datarecord_data" >{{ slide.chars }} スライド</td>
+                      <td class="c-datarecord-detail_title">文字数:</td>
+                      <td class="c-datarecord-detail_data" >{{ slide.chars }} 文字</td>
                     </tr>
                   </table>
                 </div>
+                <button type="submit" class="e-button_submit" @click="onDetail">{{ button_name }}</button>
               </div>
             </div>
           `,
@@ -110,7 +121,19 @@
             return {
               status: false,
               isDetail: false,
+              button_name: "詳細",
               data: null
+            }
+          },
+          methods: {
+            onDetail() {
+              if (this.isDetail) {
+                this.isDetail = false;
+                this.button_name = "詳細"
+              } else {
+                this.isDetail = true;
+                this.button_name = "閉じる"
+              }
             }
           },
           created() {

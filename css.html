@@ -1,27 +1,25 @@
 <style>
-  /* リセットCSS */
+  /* 
+    リセットCSS
+  ----------------------------------------------------------------------------------------------------- */
+  
   * {
     padding: 0;
     margin: 0;
     text-decoration:none;
   }
 
-  hr {
-    margin: 5% 0;
-  }
-
+  /* 
+    レイアウト
+  ----------------------------------------------------------------------------------------------------- */
   .l-menubar {
     background-color: aquamarine;
-  }
-
-  .l-menubar > ul{
     text-align: center;
   }
 
   .l-menuitem {
-    display: inline;
-    padding: 5% 5%;
-    margin: 5% 5%;
+    display: inline-block;
+    margin: 0 5%;
     font-weight: 700;
     font-size: 4rem;
   }
@@ -34,23 +32,9 @@
     text-align: center;
   }
 
-  .l-datatable {
-    margin-left: 30vw;
-    margin-top: -5%;
-    text-align: left;
-  }
-
-  .l-datarecord_title {
-    width: 20vw;
-    padding: 1%;
-    font-size: 2rem;
-  }
-
-  .l-datarecord_data {
-    width: 30vw;
-    padding: 1%;
-    font-size: 2rem;
-  }
+  /* 
+    エレメント
+  ----------------------------------------------------------------------------------------------------- */
 
   .e-title {
     font-size: 4rem;
@@ -69,16 +53,62 @@
 
   .e-input_URL {
     width: 80%;
-    padding: 0.5% 0.5%;
+    padding: 0.5rem 0.5rem;
     font-size: 25px;
   }
 
   .e-button_submit {
-    margin: 7% auto;
+    margin: 7rem auto;
     font-size: 2rem;
-    height: 5%;
-    width: 10%;
+    height: 5rem;
+    width: 10rem;
     text-align: center;
     display: block;
   }
+
+  /* 
+    コンポーネント
+  ----------------------------------------------------------------------------------------------------- */
+
+  .c-datatable {
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .c-datarecord_title {
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+  }
+
+  .c-datarecord_data {
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+  }
+
+  .c-datatable-detail {
+    margin: 5rem auto;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-top: 1px solid #000;
+    padding-top: 5rem
+  }
+
+  .c-datarecord-detail_title {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .c-datarecord-detail_data {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .c-datarecord-detail_Image {
+    border: 1px solid #000;
+    width: 32rem;
+    height: 18rem;
+  }
+
 </style>
