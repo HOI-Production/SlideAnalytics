@@ -1,11 +1,3 @@
-function testSS(){
-  let id = "1GoGy99hh8eGO3JYqsI2wgdf19tsQ3wEVwTlBLkUYo1w"
-
-  let data = GET_SLIDE_DATA(id)
-  
-  console.log(data)
-}
-
 function GET_SLIDE_DATA(id) {
   let slide_data = new SlideData(id);
   let slides = SlidesApp.openById(slide_data.presentation_id).getSlides();

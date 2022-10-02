@@ -40,11 +40,3 @@ function getData(url) {
   }
   return result;
 }
-
-function test() {
-  let url = "https://docs.google.com/presentation/d/1GoGy99hh8eGO3JYqsI2wgdf19tsQ3wEVwTlBLkUYo1w/edit#slide=id.p"
-
-  let data = getData(url);
-
-  console.log(data)
-}
