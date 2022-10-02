@@ -15,14 +15,12 @@ function CONVERT_SLIDE_FROM_PPT(id) {
     { convert: true }
   );
 
-  let folder_id = STORE_FOLDER;
-
-  FILE_MOVE_TO(new_file_data.id,folder_id);
+  FILE_MOVE_TO(new_file_data.id);
   return new_file_data.id;
 }
 
-function FILE_MOVE_TO (file_id, folder_id) {
-  let movedto_folder = DriveApp.getFolderById(folder_id);
+function FILE_MOVE_TO (file_id) {
+  let movedto_folder = DriveApp.getFolderById(STORE_FOLDER);
   let move_file = DriveApp.getFileById(file_id);
   move_file.moveTo(movedto_folder);
 }

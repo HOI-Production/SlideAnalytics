@@ -38,7 +38,6 @@ function getData(url) {
       details: e
     }
   }
-  console.log(result);
   return result;
 }
 
