@@ -47,7 +47,8 @@
             <div class="l-body">
               <h1 class="e-title">ABOUT ME</h1>
               <p class="e-text">制作者 : 林 大地</p>
-              <p class="e-text">Git: <a v-bind:href=url>{{ branch }}</a></p>
+              <p class="e-text">Git: <a :href=url>{{ branch }}</a></p>
+              <img src="https://drive.google.com/uc?id=1E4mThphIzASKq-8Qifi0UazcD0JwHEpI" width=" 500" height="500" alt="いつも隣にITのお仕事ロゴ">
             </div>
           `,
           data() {
@@ -73,7 +74,7 @@
                 <table class="l-datatable">
                   <tr>
                     <td class="l-datarecord_title">ファイル名:</td>
-                    <td class="l-datarecord_data" >{{ data.title }}</td>
+                    <td class="l-datarecord_data" >{{ data.presentation_title }}</td>
                   </tr>
                   <tr>
                     <td class="l-datarecord_title">有効スライド数:</td>
@@ -84,19 +85,32 @@
                     <td class="l-datarecord_data" >{{ data.active_chars }} 文字</td>
                   </tr>
                 </table>
-                <button type="submit" class="e-button_submit" @click="fetchDetail">詳細</button>
+                <button type="submit" class="e-button_submit" @click="isDetail=true" v-if="!isDetail">詳細</button>
+                <div v-for="slide in data.slides" v-if="isDetail">
+                  <img :src=slide.slide_img_url>
+                  <table>
+                    <tr>
+                      <td class="l-datarecord_title">ページ</td>
+                      <td class="l-datarecord_data" >{{ slide.page }} スライド</td>
+                    </tr>
+                    <tr>
+                      <td class="l-datarecord_title">状態:</td>
+                      <td class="l-datarecord_data" >{{ slide.type }} スライド</td>
+                    </tr>
+                    <tr>
+                      <td class="l-datarecord_title">文字数:</td>
+                      <td class="l-datarecord_data" >{{ slide.chars }} スライド</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
           `,
           data() {
             return {
               status: false,
+              isDetail: false,
               data: null
-            }
-          },
-          methods: {
-            fetchDetail() {
-              console.log("詳細")
             }
           },
           created() {

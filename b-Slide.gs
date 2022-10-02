@@ -78,7 +78,8 @@ class SlideData {
     if (response.getResponseCode() === 200)  {
       let images_folder = DriveApp.getFolderById(IMAGE_FOLDER);
       let presentaion = SlidesApp.openById(presentation_id);
-      let image_url =  images_folder.createFile(response.getBlob()).setName(presentaion.getName() + '_' + slidesNumber + '.' + IMAGE_EXT).getUrl();
+      let image_id =  images_folder.createFile(response.getBlob()).setName(presentaion.getName() + '_' + slidesNumber + '.' + IMAGE_EXT).getId();
+      let image_url = "https://drive.google.com/uc?id=" + image_id;
       return image_url; 
     }
   }
